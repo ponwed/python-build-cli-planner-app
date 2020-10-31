@@ -1,5 +1,7 @@
 import csv
 
+from src.deadlined_reminders import DateReminder
+
 from src.reminder import PoliteReminder
 
 def list_reminders():
@@ -14,8 +16,8 @@ def list_reminders():
                 print(e.ljust(32), end=' ')
         print()
 
-def add_reminder(text):
-    reminder = PoliteReminder(text)
+def add_reminder(text, date):
+    reminder = DateReminder(text, date)
     with open('reminders.csv', 'a+', newline='\n') as file:
         writer = csv.writer(file)
-        writer.writerow([reminder.text])
+        writer.writerow(reminder)
